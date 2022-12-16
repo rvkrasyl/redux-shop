@@ -1,4 +1,5 @@
 import React from "react";
+import withBookstoreService from "../hoc";
 
 import "./app.css";
 
@@ -8,4 +9,4 @@ const App = () => {
     );
 }
 
-export default App;
+export default withBookstoreService()(App);

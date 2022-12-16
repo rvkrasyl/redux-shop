@@ -1,11 +1,11 @@
  import React from "react";
 
  const {
-    Provider: BookstoreServiceContextProvider,
-    Consumer: BookstoreServiceContextConsumer
+    Provider: BookstoreServiceProvider,
+    Consumer: BookstoreServiceConsumer
  } = React.createContext();
 
  export {
-   BookstoreServiceContextProvider,
-   BookstoreServiceContextConsumer
+   BookstoreServiceProvider,
+   BookstoreServiceConsumer
  };
