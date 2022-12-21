@@ -17,7 +17,7 @@ const BookList = ({ books, bookstoreService, booksLoaded }) => {
     }, []);
 
     return (
-        <ul>
+        <ul className="book-list">
             {
                 books.map((book) => {
                     return (
