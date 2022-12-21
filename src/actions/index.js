@@ -13,7 +13,7 @@ const booksRequested = () => {
 
 const booksError = (error) => {
     return {
-        type: "BOOKS_ERROR",
+        type: "BOOKS_FETCH_ERROR",
         payload: error
     }
 };

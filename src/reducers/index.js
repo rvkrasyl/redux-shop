@@ -19,7 +19,7 @@ const reducer = (state = initialState, action) => {
                 loading: false,
                 error: null
             };
-        case "BOOKS_ERROR" : {
+        case "BOOKS_FETCH_ERROR" : {
             return {
                 books: [],
                 loading: false,
