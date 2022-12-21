@@ -10,17 +10,10 @@ import compose from "../../utils";
 import "./book-list.css";
 
 const BookList = ({ books, loading, error, 
-    bookstoreService, 
-    booksLoaded, booksRequested, booksError }) => {
+    fetchBooks }) => {
     // instead of componentDidMount
     useEffect(() => {
-        //display spinner while data is loading
-        booksRequested();
-        // 1. get data
-        bookstoreService.getBooks()
-        //2. dispatch action to store
-            .then((data) => booksLoaded(data))
-            .catch((err) => booksError(err));
+        fetchBooks();
     }, []);
 
     if (error) {
@@ -50,10 +43,18 @@ const mapStateToProps = ({ books, loading, error }) => {
     return { books, loading, error }
 };
 
-const mapDispatchToProps = {
-    booksLoaded,
-    booksRequested,
-    booksError
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        fetchBooks: () => {
+            //display spinner while data is loading
+            dispatch(booksRequested());
+            // 1. get data
+            ownProps.bookstoreService.getBooks()
+            //2. dispatch action to store
+                .then((data) => dispatch(booksLoaded(data)))
+                .catch((err) => dispatch(booksError(err)));
+        }
+    }
 };
 
 export default compose(
