@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import BookListItem from "../book-list-item";
+import Spinner from "../spinner";
 import { connect } from "react-redux";
 import withBookStoreService from "../hoc";
 import { booksLoaded } from "../../actions";
@@ -7,14 +8,20 @@ import compose from "../../utils";
 
 import "./book-list.css";
 
-const BookList = ({ books, bookstoreService, booksLoaded }) => {
-
+const BookList = ({ books, loading, bookstoreService, booksLoaded }) => {
+    // instead of componentDidMount
     useEffect(() => {
         // 1. get data
-        const data = bookstoreService.getBooks();
+        bookstoreService.getBooks()
         //2. dicpatch action to store
-        booksLoaded(data);
+            .then((data) => {
+                booksLoaded(data);
+            });
     }, []);
+
+    if (loading) {
+        return <Spinner />
+    }
 
     return (
         <ul className="book-list">
@@ -31,8 +38,8 @@ const BookList = ({ books, bookstoreService, booksLoaded }) => {
     );
 }
 
-const mapStateToProps = ({ books }) => {
-    return { books }
+const mapStateToProps = ({ books, loading }) => {
+    return { books, loading }
 };
 
 const mapDispatchToProps = {

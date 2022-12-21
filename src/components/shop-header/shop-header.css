@@ -6,19 +6,24 @@
     flex-wrap: nowrap;
 }
 
+.shop-header .link {
+    text-decoration: none;
+    display: flex;
+}
+
 .shop-header .logo {
     font-family:  "Playfair Display", Georgia, serif;
     font-size: 2.5rem;
     padding-left: 1rem;
 }
 
-.shop-header .shopping-cart {
+.shop-header .link .shopping-cart {
     align-self: center;
     font-size: 1.3rem;
     padding-right: 1rem;
 }
 
-.shop-header .shopping-cart .cart-icon {
+.shop-header .link .shopping-cart .cart-icon {
     font-size: 1.8rem;
     color:  cadetblue;
     margin-right: 10px;
