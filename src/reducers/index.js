@@ -3,30 +3,11 @@ const initialState = {
     books: [],
     loading: true,
     error: null,
-    cartItems: [
-        {
-            id: 1,
-            name: "Book1",
-            count: 3,
-            total: 150
-        },
-        {
-            id: 2,
-            name: "Book 2",
-            count: 4,
-            total: 120
-        },
-        {
-            id: 3,
-            name: "Book 3",
-            count: 1,
-            total: 70
-        },
-    ],
-    orderTotal: 340
+    cartItems: [],
+    orderTotal: 0
 }
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {   
     switch (action.type) {
         case "FETCH_BOOKS_REQUEST" :
             return {
@@ -42,14 +23,30 @@ const reducer = (state = initialState, action) => {
                 loading: false,
                 error: null
             };
-        case "FETCH_BOOKS_FAILURE" : {
+        case "FETCH_BOOKS_FAILURE" :
             return {
                 ...state,
                 books: [],
                 loading: false,
                 error: action.payload
             };
-        }
+        case "BOOK_ADDED_TO_CART" :
+            const bookId = action.payload;
+            const book = state.books.find((book) => book.id === bookId);
+            const newItem = {
+                id: bookId,
+                name: book.title,
+                count: 1,
+                total: book.price
+            }
+            return {
+                ...state,
+                cartItems: [
+                    ...state.cartItems,
+                    newItem
+                ],
+                orderTotal: state.orderTotal + newItem.count * newItem.total
+            };
         default: 
             return state;
     }
