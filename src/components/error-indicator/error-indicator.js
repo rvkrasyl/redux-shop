@@ -2,9 +2,9 @@ import React from "react";
 
 import "./error-indicator.css";
 
-const ErrorIndicator = () => {
+const ErrorIndicator = ({ err }) => {
     return (
-    <div>Error!</div>
+    <div>Error! {err.message}</div>
     );
 }
 
