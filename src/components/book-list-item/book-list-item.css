@@ -22,7 +22,8 @@
 }
 
 .book-list-item .book-details .book-title {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    font-weight: bold;
 }
 
 .book-list-item .book-details .book-price {
